@@ -16,6 +16,17 @@ const assert = require('node:assert/strict');
       assert.equal(await page.locator('#splash-screen').evaluate(el =>
         el.getAnimations({ subtree: true }).filter(a => a.playState === 'running').length), 0,
         'Reduced motion disables decorative animation');
+      if (width === 1440) {
+        await page.locator('#effects-toggle').click();
+        assert.equal(await page.locator('#splash-screen').getAttribute('data-motion'), 'on');
+        assert(await page.locator('.arcade-idle').evaluate(el =>
+          el.getAnimations().some(a => a.playState === 'running')),
+          'Visitor can explicitly enable movement despite OS reduced motion');
+        await page.locator('#effects-toggle').click();
+        assert.equal(await page.locator('#splash-screen').getAttribute('data-motion'), 'off');
+        await page.reload();
+        assert.equal(await page.locator('#effects-toggle').getAttribute('aria-pressed'), 'false');
+      }
       assert(await page.evaluate(() => document.documentElement.scrollWidth === innerWidth));
       assert(await page.locator('#entrance-cover').evaluate(el => {
         const r = el.getBoundingClientRect();
@@ -57,6 +68,14 @@ const assert = require('node:assert/strict');
     assert(await page.locator('#entrance-cover').evaluate(el =>
       el.getAnimations({ subtree: true }).some(a => a.playState === 'running')),
       'The idle arcade is animated');
+    const idleTop = await page.locator('.arcade-idle').evaluate(el => el.getBoundingClientRect().top);
+    await page.waitForFunction(previous =>
+      Math.abs(document.querySelector('.arcade-idle').getBoundingClientRect().top - previous) > 5, idleTop);
+    await page.mouse.move(50, 50);
+    const firstTilt = await page.locator('.arcade-parallax').evaluate(el => getComputedStyle(el).transform);
+    await page.mouse.move(1100, 700);
+    await page.waitForFunction(previous =>
+      getComputedStyle(document.querySelector('.arcade-parallax')).transform !== previous, firstTilt);
     const reflection = await page.locator('.crt-reflection').evaluate(el => getComputedStyle(el).transform);
     await page.waitForFunction(previous =>
       getComputedStyle(document.querySelector('.crt-reflection')).transform !== previous, reflection);

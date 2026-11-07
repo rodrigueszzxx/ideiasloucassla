@@ -29,10 +29,10 @@ $secretCharacters = ['thamires' =>
       crossorigin
     />
     <link rel="stylesheet" href="css/styles.css?v=arcade-13" />
-    <link rel="stylesheet" href="css/lobby.css?v=3" />
+    <link rel="stylesheet" href="css/lobby.css?v=4" />
     <script src="js/audio.js?v=arcade-13" defer></script>
     <script src="js/script.js?v=arcade-15" defer></script>
-    <script src="js/lobby.js?v=2" defer></script>
+    <script src="js/lobby.js?v=3" defer></script>
   </head>
   <body class="game-page">
     <div class="game-tools" aria-label="Controles da partida">
@@ -140,6 +140,7 @@ $secretCharacters = ['thamires' =>
     <section
       id="splash-screen"
       class="splash-screen"
+      data-motion="off"
       aria-labelledby="splash-title"
     >
       <h1 id="splash-title" class="entrance-sr-only">Beyond Jump</h1>
@@ -161,21 +162,27 @@ $secretCharacters = ['thamires' =>
         </defs>
       </svg>
       <div id="entrance-cover" aria-hidden="true">
+        <div class="arcade-idle"><div class="arcade-parallax">
         <div class="arcade-art"></div>
         <div class="arcade-marquee-light"></div>
         <div class="arcade-crt">
           <div class="crt-content"><span class="crt-kicker">BEYOND THE LIMITS PRESENTS</span><strong>BEYOND<br><span>JUMP</span></strong><span class="crt-ready">— PLAYER ONE READY —</span><span class="crt-credit">FREE PLAY · EST. SENAI</span></div>
+          <div class="crt-demo"><div class="demo-track"></div><img class="demo-runner" src="assets/characters/sonic.gif" alt=""><span class="demo-ring"></span><span class="demo-obstacle"></span></div>
           <div class="crt-scanlines"></div><div class="crt-reflection"></div>
         </div>
         <div class="arcade-joysticks"></div>
         <div class="arcade-control-lights"><i></i><i></i><i></i><i></i></div>
+        <div class="cabinet-light-sweep"></div>
+        </div></div>
       </div>
+      <div class="arcade-energy" aria-hidden="true"></div>
       <div id="entrance-glow" aria-hidden="true"></div>
       <img id="entrance-logo" src="assets/brand/beyond-the-limits.png" alt="Beyond the Limits" />
       <button id="btn-splash-play" type="button">▶ APERTE START</button>
       <div class="entrance-links">
         <button id="btn-splash-ranking" type="button" aria-label="Ver recorde e ranking">RANKING <span id="splash-record-text">Consultando…</span></button>
         <a class="about-link" href="pages/sobre-nos.php">Sobre nós →</a>
+        <button id="effects-toggle" type="button" aria-pressed="false" aria-label="Ativar efeitos de movimento">EFEITOS: OFF</button>
       </div>
       <p id="entrance-status" class="entrance-sr-only" role="status"></p>
     </section>

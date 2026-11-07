@@ -113,9 +113,7 @@ body[data-screen='splash-screen'] .game-tools { top: 12px; right: 12px; }
   #btn-splash-play { padding: 10px 18px; font-size: 11px; }
   .entrance-links { bottom: 8px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  #btn-splash-play { animation: none; }
-}
+
 .arcade-art, .arcade-joysticks {
   position: absolute;
   inset: 0;
@@ -199,7 +197,97 @@ body[data-screen='splash-screen'] .game-tools { top: 12px; right: 12px; }
 @keyframes crt-sweep { to { transform: translateY(30%); } }
 @keyframes control-glow { 0%, 100% { opacity: .2; } 50% { opacity: .85; } }
 @media (max-height: 420px) { .crt-content { gap: 8px; } .crt-content strong { font-size: 23px; } }
-@media (prefers-reduced-motion: reduce) {
-  #splash-screen *, #splash-screen *::before, #splash-screen *::after { animation: none !important; }
-  .crt-reflection { display: none; }
+
+/* Attract mode: visible motion of the whole machine, with an independent START zoom. */
+.arcade-idle, .arcade-parallax { position: absolute; inset: 0; }
+.arcade-idle { animation: cabinet-float 5s ease-in-out infinite; transform-origin: 50% 55%; }
+.arcade-parallax {
+  transform: perspective(1500px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform .3s ease-out;
 }
+.cabinet-light-sweep {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, #f3dcae24 48%, #f3dcae40 50%, transparent 62%);
+  mix-blend-mode: screen;
+  animation: cabinet-sweep 6s ease-in-out infinite;
+}
+.arcade-crt { animation: monitor-drift 4s ease-in-out infinite; }
+.crt-content { padding-bottom: 12%; }
+.crt-content strong { animation: title-hover 3s ease-in-out infinite; }
+.crt-scanlines { inset: -8px 0; animation: scanline-roll .5s linear infinite; }
+.crt-reflection {
+  background: linear-gradient(180deg, transparent 38%, #f3dcae05 46%, #f3dcae45 50%, #f3dcae08 53%, transparent 60%);
+  animation-duration: 3s;
+}
+.crt-demo { position: absolute; bottom: 5%; left: 50%; translate: -50% 0; width: min(300px, 75%); height: 18%; overflow: hidden; }
+.demo-track {
+  position: absolute; bottom: 0; left: 0; width: 200%; height: 7px;
+  border-top: 2px solid #f3dcae80;
+  background: repeating-linear-gradient(90deg, #e8aa5740 0 12px, transparent 12px 28px);
+  animation: track-scroll 1s linear infinite;
+}
+.demo-runner { position: absolute; bottom: 7px; left: 18%; width: 40px; height: 44px; object-fit: contain; image-rendering: pixelated; animation: runner-hop 2.2s ease-in-out infinite; }
+.demo-obstacle { position: absolute; bottom: 7px; right: -15px; width: 14px; height: 18px; background: #bc663f; border: 2px solid #f3dcae; box-shadow: inset -3px -3px #72412b; animation: obstacle-run 2.2s linear infinite; }
+.demo-ring { position: absolute; bottom: 30px; right: -15px; width: 14px; height: 18px; border: 3px solid #e8aa57; border-radius: 50%; box-shadow: 0 0 10px #e8aa5790; animation: obstacle-run 2.2s linear -1.1s infinite; }
+.arcade-energy { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.arcade-energy i {
+  position: absolute; top: 105%; left: var(--x); width: var(--size); height: var(--size);
+  background: #ffe5aa; box-shadow: 0 0 14px 3px #e8aa5750;
+  animation: energy-rise var(--life) linear var(--delay) infinite;
+}
+.arcade-energy i:nth-child(3n) { background: #8fc9ba; box-shadow: 0 0 16px 4px #5cb7ab55; }
+.arcade-energy i:nth-child(4n) { width: 3px; height: 22px; }
+#splash-screen.entering .arcade-idle,
+#splash-screen.entering .arcade-crt,
+#splash-screen.entering .crt-content strong,
+#splash-screen.entering .crt-scanlines,
+#splash-screen.entering .crt-demo *,
+#splash-screen.entering .cabinet-light-sweep,
+#splash-screen.entering .arcade-energy i { animation-play-state: paused; }
+@keyframes cabinet-float {
+  0%, 100% { transform: translate3d(-5px, 12px, 0) rotate(-.6deg) scale(1.04); }
+  50% { transform: translate3d(5px, -12px, 0) rotate(.6deg) scale(1.06); }
+}
+@keyframes monitor-drift {
+  0%, 100% { transform: perspective(900px) rotateY(-1deg) translateY(2px); }
+  50% { transform: perspective(900px) rotateY(1deg) translateY(-3px); }
+}
+@keyframes title-hover {
+  0%, 100% { transform: translateY(4px); text-shadow: 3px 3px #102c2c, -2px 0 #bc663f80, 0 0 20px #e8aa5750; }
+  50% { transform: translateY(-6px); text-shadow: 3px 3px #102c2c, 2px 0 #77b9a880, 0 0 28px #e8aa5790; }
+}
+@keyframes cabinet-sweep { 0%, 12% { transform: translateX(-100%); } 70%, 100% { transform: translateX(100%); } }
+@keyframes scanline-roll { to { transform: translateY(4px); } }
+@keyframes track-scroll { to { transform: translateX(-28px); } }
+@keyframes runner-hop { 0%, 28%, 75%, 100% { transform: translateY(0); } 52% { transform: translateY(-28px) rotate(-6deg); } }
+@keyframes obstacle-run { to { transform: translateX(-320px); } }
+@keyframes energy-rise {
+  0% { transform: translate3d(0, 0, 0) rotate(0); opacity: 0; }
+  12%, 85% { opacity: .9; }
+  100% { transform: translate3d(var(--drift), -120dvh, 0) rotate(180deg); opacity: 0; }
+}
+@media (max-width: 600px) {
+  .crt-demo { height: 21%; bottom: 6%; }
+  .demo-runner { width: 35px; height: 38px; }
+  .arcade-idle { animation-name: cabinet-float-mobile; }
+}
+@keyframes cabinet-float-mobile {
+  0%, 100% { transform: translate3d(-3px, 8px, 0) rotate(-.25deg) scale(1.025); }
+  50% { transform: translate3d(3px, -8px, 0) rotate(.25deg) scale(1.04); }
+}
+
+
+/* Preference defaults to the OS setting; the visitor can explicitly enable it. */
+#splash-screen[data-motion='off'] *,
+#splash-screen[data-motion='off'] *::before,
+#splash-screen[data-motion='off'] *::after { animation: none !important; }
+#splash-screen[data-motion='off'] .arcade-parallax { transform: none; transition: none; }
+#splash-screen[data-motion='off'] .arcade-energy,
+#splash-screen[data-motion='off'] .cabinet-light-sweep,
+#splash-screen[data-motion='off'] .crt-reflection,
+#splash-screen[data-motion='off'] .demo-obstacle,
+#splash-screen[data-motion='off'] .demo-ring { display: none; }
+#splash-screen[data-motion='off'] .demo-runner { visibility: hidden; }
+.entrance-links { gap: 8px; }
+.entrance-links button, .entrance-links .about-link { padding: 7px 9px; font-size: 10px; }
+#effects-toggle[aria-pressed='true'] { color: #f3dcae; border-color: #e8aa57; }
