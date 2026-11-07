@@ -1,4 +1,4 @@
-/* Fliperama e enquadramento extraídos da abertura enviada em siteJogoFinal. */
+/* Original arcade artwork, styled with a warm retro palette and CRT lighting. */
 #splash-screen {
   position: fixed;
   inset: 0;
@@ -6,7 +6,11 @@
   padding: 0;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(90deg, #0a49a6 50%, #b66ee0 50%);
+  background: linear-gradient(90deg, #243e40 50%, #87553b 50%);
+  --retro-cream: #f3dcae;
+  --retro-amber: #e8aa57;
+  --retro-rust: #bc663f;
+  --retro-teal: #38696a;
   --arcade-width: min(100vw, 177.78dvh);
   --arcade-height: min(56.25vw, 100dvh);
 }
@@ -18,13 +22,13 @@
   translate: -50% -50%;
   width: var(--arcade-width);
   height: var(--arcade-height);
-  background: url('../assets/scenes/arcade-entrance.jpg') center / 100% 100% no-repeat;
+  container-type: inline-size;
   transform-origin: 50% 40%;
 }
 #entrance-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, #4fe3ff, #2a9cff);
+  background: radial-gradient(circle, #f3dcae, #a9663f);
   opacity: 0;
   pointer-events: none;
 }
@@ -48,15 +52,15 @@
   white-space: nowrap;
   font: clamp(11px, 2vw, 16px)/1.7 var(--font-game);
   padding: 16px 26px;
-  border: 4px solid #000;
+  border: 3px solid #1b292b;
   border-radius: 0;
-  background: #ff6a1a;
-  color: #fff;
+  background: #e8aa57;
+  color: #1b292b;
   cursor: pointer;
-  box-shadow: 0 7px 0 #9a3200;
-  animation: arcade-start-blink 1s infinite step-end;
+  box-shadow: 0 7px 0 #72412b, 0 0 24px #e8aa5720;
+  animation: arcade-start-breathe 3s ease-in-out infinite;
 }
-#btn-splash-play:hover { box-shadow: 0 3px 0 #9a3200; translate: 0 4px; }
+#btn-splash-play:hover { background: #f3dcae; box-shadow: 0 3px 0 #72412b, 0 0 35px #e8aa5755; translate: 0 4px; }
 #btn-splash-play:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
 #splash-screen.entering #btn-splash-play,
 #splash-screen.entering .entrance-links { visibility: hidden; pointer-events: none; }
@@ -76,16 +80,16 @@
 .entrance-links .about-link {
   display: inline-block;
   margin: 0;
-  border: 1px solid #c895ee;
+  border: 1px solid #c18c5d;
   border-radius: 3px;
   padding: 7px 12px;
-  background: #16062deb;
+  background: #152a2ceb;
   color: #fff;
   font: 600 11px/1.5 var(--font-ui);
   text-decoration: none;
 }
 .entrance-links button:hover,
-.entrance-links .about-link:hover { background: #44117c; }
+.entrance-links .about-link:hover { background: #38696a; }
 .entrance-links #splash-record-text { display: none; }
 .entrance-sr-only {
   position: absolute;
@@ -98,7 +102,7 @@
   white-space: nowrap;
 }
 body[data-screen='splash-screen'] .game-tools { top: 12px; right: 12px; }
-@keyframes arcade-start-blink { 50% { background: #ffc928; color: #000; } }
+@keyframes arcade-start-breathe { 50% { box-shadow: 0 7px 0 #72412b, 0 0 34px #e8aa5755; } }
 @media (max-aspect-ratio: 1/1) {
   #splash-screen {
     --arcade-width: max(100vw, 177.78dvh);
@@ -111,4 +115,91 @@ body[data-screen='splash-screen'] .game-tools { top: 12px; right: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   #btn-splash-play { animation: none; }
+}
+.arcade-art, .arcade-joysticks {
+  position: absolute;
+  inset: 0;
+  background: url('../assets/scenes/arcade-entrance.jpg') center / 100% 100% no-repeat;
+  filter: url('#arcade-retro-palette');
+}
+.arcade-joysticks { clip-path: url('#arcade-joysticks'); pointer-events: none; }
+/* All lighting sits in the artwork's coordinates, including on portrait screens. */
+.arcade-marquee-light {
+  position: absolute;
+  left: 23%; top: 1%; width: 54%; height: 15%;
+  border-radius: 18%;
+  background: radial-gradient(ellipse, #f3dcae55, #e8aa5710 65%, transparent 75%);
+  mix-blend-mode: screen;
+  animation: marquee-warmth 5s ease-in-out infinite;
+}
+.arcade-crt {
+  position: absolute;
+  left: 25.4%; top: 22.3%; width: 49.2%; height: 42.3%;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 5% / 10%;
+  background: radial-gradient(ellipse at 50% 40%, #326563, #172f32 72%);
+  box-shadow: inset 0 0 3cqw #071b21b0, 0 0 1.5cqw #e8aa5715;
+}
+.arcade-crt::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(ellipse, transparent 35%, #081a2560 100%);
+  box-shadow: inset 0 0 2cqw #0006;
+}
+.crt-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(9px, 1.4vw, 21px);
+  color: var(--retro-cream);
+  text-align: center;
+  font-family: var(--font-game);
+  text-shadow: 0 0 12px #f3dcae50;
+  animation: crt-hum 6s ease-in-out infinite;
+}
+.crt-content strong { font-size: clamp(24px, 3vw, 44px); line-height: 1.5; font-weight: 400; text-shadow: 3px 3px #102c2c, 0 0 20px #e8aa5750; }
+.crt-content strong span { color: var(--retro-amber); letter-spacing: .13em; padding-left: .13em; }
+.crt-kicker { font-size: clamp(5px, .55vw, 9px); letter-spacing: .12em; }
+.crt-ready { font-size: clamp(6px, .7vw, 10px); color: #f2ba79; animation: ready-pulse 2.8s ease-in-out infinite; }
+.crt-credit { font-size: clamp(5px, .5vw, 8px); opacity: .65; }
+.crt-scanlines {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, #0003 0 1px, transparent 1px 4px);
+  opacity: .5;
+}
+.crt-reflection {
+  position: absolute; inset: -100% 0;
+  background: linear-gradient(180deg, transparent 35%, #f3dcae05 47%, #f3dcae14 50%, transparent 57%);
+  transform: translateY(-30%);
+  animation: crt-sweep 8s linear infinite;
+  pointer-events: none;
+}
+.arcade-control-lights { position: absolute; inset: 0; pointer-events: none; }
+.arcade-control-lights i {
+  position: absolute; top: 69.5%; left: 33.4%; width: 4.5%; height: 2.6%;
+  border-radius: 50%; background: #f3c77e;
+  box-shadow: 0 0 .9cqw .3cqw #e8aa5760;
+  mix-blend-mode: screen;
+  animation: control-glow 3.8s ease-in-out infinite;
+}
+.arcade-control-lights i:nth-child(2) { left: 43.4%; animation-delay: -.9s; }
+.arcade-control-lights i:nth-child(3) { left: 51.7%; animation-delay: -1.8s; }
+.arcade-control-lights i:nth-child(4) { left: 61.7%; animation-delay: -2.7s; }
+#splash-screen.entering .arcade-marquee-light,
+#splash-screen.entering .crt-content,
+#splash-screen.entering .crt-ready,
+#splash-screen.entering .crt-reflection,
+#splash-screen.entering .arcade-control-lights i { animation-play-state: paused; }
+/* Stop decoration while instructions or the game are visible. */
+#splash-screen[hidden] * { animation-play-state: paused !important; }
+@keyframes marquee-warmth { 50% { opacity: .5; } }
+@keyframes crt-hum { 50% { opacity: .88; } }
+@keyframes ready-pulse { 50% { opacity: .45; } }
+@keyframes crt-sweep { to { transform: translateY(30%); } }
+@keyframes control-glow { 0%, 100% { opacity: .2; } 50% { opacity: .85; } }
+@media (max-height: 420px) { .crt-content { gap: 8px; } .crt-content strong { font-size: 23px; } }
+@media (prefers-reduced-motion: reduce) {
+  #splash-screen *, #splash-screen *::before, #splash-screen *::after { animation: none !important; }
+  .crt-reflection { display: none; }
 }

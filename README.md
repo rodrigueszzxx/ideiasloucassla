@@ -4,7 +4,7 @@ Nova versão do jogo acadêmico, com Mago, Pikachu, Sonic e Shadow selecionávei
 
 ## Nova abertura interativa
 
-A abertura reproduz o fliperama de `siteJogoFinal-main.zip`, com sua imagem original salva localmente em `assets/scenes/arcade-entrance.jpg`. O botão **APERTE START** (ou Enter/Espaço fora de um controle) inicia o zoom na tela, revela a marca Beyond the Limits sobre o fundo ciano e abre as instruções. A sequência dura cerca de 3,3 segundos; com movimento reduzido, abre as instruções diretamente. Voltar à tela inicial restaura a abertura para jogar novamente. Ranking e Sobre nós continuam acessíveis antes de iniciar. Fontes e imagens são locais.
+A abertura reproduz o fliperama de `siteJogoFinal-main.zip`, com sua imagem original salva localmente em `assets/scenes/arcade-entrance.jpg`. O botão **APERTE START** (ou Enter/Espaço fora de um controle) inicia o zoom na tela, revela a marca Beyond the Limits sobre o fundo ciano e abre as instruções. A sequência dura cerca de 3,3 segundos; com movimento reduzido, abre as instruções diretamente. Voltar à tela inicial restaura a abertura para jogar novamente. Ranking e Sobre nós continuam acessíveis antes de iniciar. A imagem recebe uma paleta retrô no navegador (verde-petróleo, terracota, âmbar e creme), preservando o arquivo original. Luzes do painel e dos controles, reflexos em movimento e linhas de CRT animam a espera. Os efeitos ficam pausados durante o jogo e são desativados com movimento reduzido. Fontes e imagens são locais.
 
 O jogo exige hospedagem com PHP; GitHub Pages não executa seus endpoints. O ranking persistente exige MySQL/MariaDB configurado pelas variáveis abaixo.
 

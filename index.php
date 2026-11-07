@@ -29,7 +29,7 @@ $secretCharacters = ['thamires' =>
       crossorigin
     />
     <link rel="stylesheet" href="css/styles.css?v=arcade-13" />
-    <link rel="stylesheet" href="css/lobby.css?v=2" />
+    <link rel="stylesheet" href="css/lobby.css?v=3" />
     <script src="js/audio.js?v=arcade-13" defer></script>
     <script src="js/script.js?v=arcade-15" defer></script>
     <script src="js/lobby.js?v=2" defer></script>
@@ -143,7 +143,33 @@ $secretCharacters = ['thamires' =>
       aria-labelledby="splash-title"
     >
       <h1 id="splash-title" class="entrance-sr-only">Beyond Jump</h1>
-      <div id="entrance-cover" aria-hidden="true"></div>
+      <svg class="entrance-sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Palette applied in the browser; the original artwork is preserved. -->
+          <clipPath id="arcade-joysticks" clipPathUnits="objectBoundingBox">
+            <ellipse cx=".2755" cy=".607" rx=".0315" ry=".052" />
+            <ellipse cx=".7245" cy=".607" rx=".0315" ry=".052" />
+          </clipPath>
+          <filter id="arcade-retro-palette" color-interpolation-filters="sRGB">
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncR type="table" tableValues=".055 .10 .20 .62 .85 .96" />
+              <feFuncG type="table" tableValues=".09 .23 .34 .34 .57 .86" />
+              <feFuncB type="table" tableValues=".11 .25 .33 .22 .30 .68" />
+            </feComponentTransfer>
+          </filter>
+        </defs>
+      </svg>
+      <div id="entrance-cover" aria-hidden="true">
+        <div class="arcade-art"></div>
+        <div class="arcade-marquee-light"></div>
+        <div class="arcade-crt">
+          <div class="crt-content"><span class="crt-kicker">BEYOND THE LIMITS PRESENTS</span><strong>BEYOND<br><span>JUMP</span></strong><span class="crt-ready">— PLAYER ONE READY —</span><span class="crt-credit">FREE PLAY · EST. SENAI</span></div>
+          <div class="crt-scanlines"></div><div class="crt-reflection"></div>
+        </div>
+        <div class="arcade-joysticks"></div>
+        <div class="arcade-control-lights"><i></i><i></i><i></i><i></i></div>
+      </div>
       <div id="entrance-glow" aria-hidden="true"></div>
       <img id="entrance-logo" src="assets/brand/beyond-the-limits.png" alt="Beyond the Limits" />
       <button id="btn-splash-play" type="button">▶ APERTE START</button>

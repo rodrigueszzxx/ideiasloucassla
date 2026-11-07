@@ -13,6 +13,9 @@ const assert = require('node:assert/strict');
       await page.goto(process.env.ARCANE_TEST_URL || 'http://127.0.0.1:8000');
       await page.waitForFunction(() => !document.getElementById('btn-start-game').disabled);
       assert.equal(await page.locator('#splash-screen').isVisible(), true);
+      assert.equal(await page.locator('#splash-screen').evaluate(el =>
+        el.getAnimations({ subtree: true }).filter(a => a.playState === 'running').length), 0,
+        'Reduced motion disables decorative animation');
       assert(await page.evaluate(() => document.documentElement.scrollWidth === innerWidth));
       assert(await page.locator('#entrance-cover').evaluate(el => {
         const r = el.getBoundingClientRect();
@@ -51,6 +54,12 @@ const assert = require('node:assert/strict');
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.ARCANE_TEST_URL || 'http://127.0.0.1:8000');
+    assert(await page.locator('#entrance-cover').evaluate(el =>
+      el.getAnimations({ subtree: true }).some(a => a.playState === 'running')),
+      'The idle arcade is animated');
+    const reflection = await page.locator('.crt-reflection').evaluate(el => getComputedStyle(el).transform);
+    await page.waitForFunction(previous =>
+      getComputedStyle(document.querySelector('.crt-reflection')).transform !== previous, reflection);
     for (let entry = 0; entry < 2; entry++) {
       await page.locator('#btn-splash-play').click();
       assert(await page.locator('#btn-splash-play').isDisabled());
@@ -62,6 +71,9 @@ const assert = require('node:assert/strict');
       // Repeated keyboard events must not schedule a second entry.
       await page.keyboard.press('Enter');
       await page.locator('#howto-modal').waitFor();
+      assert.equal(await page.locator('#entrance-cover').evaluate(el =>
+        el.getAnimations({ subtree: true }).filter(a => a.playState === 'running').length), 0,
+        'Hidden arcade does not keep running decorative animation');
       assert(await page.locator('#btn-howto-ok').evaluate(el => el === document.activeElement));
       await page.locator('#btn-howto-ok').click();
       await page.locator('#btn-view-ranking').click();
