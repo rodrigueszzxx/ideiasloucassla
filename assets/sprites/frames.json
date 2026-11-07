@@ -1,0 +1,389 @@
+{
+  "hero": {
+    "image": "assets/sprites/wizard-atlas.png",
+    "width": 2172,
+    "height": 724,
+    "cell": 407,
+    "frames": [
+      {
+        "x": 64,
+        "y": 153,
+        "w": 336,
+        "h": 403,
+        "anchorX": 180
+      },
+      {
+        "x": 525,
+        "y": 154,
+        "w": 254,
+        "h": 395,
+        "anchorX": 650
+      },
+      {
+        "x": 921,
+        "y": 154,
+        "w": 326,
+        "h": 402,
+        "anchorX": 1046
+      },
+      {
+        "x": 1312,
+        "y": 182,
+        "w": 374,
+        "h": 374,
+        "anchorX": 1465
+      },
+      {
+        "x": 1814,
+        "y": 148,
+        "w": 295,
+        "h": 407,
+        "anchorX": 1935
+      }
+    ],
+    "runSequence": [1, 2, 3, 2],
+    "frameMs": 100
+  },
+  "world": {
+    "image": "assets/sprites/world-atlas.png",
+    "width": 1448,
+    "height": 1086,
+    "cell": 362,
+    "frames": {
+      "rock": {
+        "x": 18,
+        "y": 812,
+        "w": 319,
+        "h": 221
+      },
+      "boss": {
+        "x": 422,
+        "y": 779,
+        "w": 237,
+        "h": 251
+      },
+      "poison": {
+        "x": 752,
+        "y": 830,
+        "w": 297,
+        "h": 171
+      }
+    }
+  },
+  "gem": {
+    "image": "assets/sprites/purple-gem.png",
+    "width": 1201,
+    "height": 1310,
+    "cell": 1024,
+    "frames": {
+      "gem": {
+        "x": 125,
+        "y": 127,
+        "w": 951,
+        "h": 1024
+      }
+    }
+  },
+  "shadow": {
+    "image": "assets/characters/shadow-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "cell": 395,
+    "frames": [
+      {
+        "x": 80,
+        "y": 69,
+        "w": 357,
+        "h": 383,
+        "anchorX": 265
+      },
+      {
+        "x": 624,
+        "y": 78,
+        "w": 288,
+        "h": 376,
+        "anchorX": 777
+      },
+      {
+        "x": 1149,
+        "y": 66,
+        "w": 283,
+        "h": 390,
+        "anchorX": 1289
+      },
+      {
+        "x": 74,
+        "y": 587,
+        "w": 387,
+        "h": 378,
+        "anchorX": 265
+      },
+      {
+        "x": 635,
+        "y": 578,
+        "w": 281,
+        "h": 390,
+        "anchorX": 777
+      },
+      {
+        "x": 1148,
+        "y": 570,
+        "w": 289,
+        "h": 395,
+        "anchorX": 1289
+      }
+    ],
+    "runSequence": [0, 1, 2, 3, 4, 5],
+    "frameMs": 70
+  },
+  "pokeball": {
+    "image": "assets/obstacles/pokeball.png",
+    "width": 362,
+    "height": 361,
+    "cell": 361,
+    "frames": {
+      "pokeball": {
+        "x": 0,
+        "y": 0,
+        "w": 362,
+        "h": 361
+      }
+    }
+  },
+  "spike": {
+    "image": "assets/obstacles/spike-ball.png",
+    "width": 378,
+    "height": 360,
+    "cell": 360,
+    "frames": {
+      "spike": {
+        "x": 0,
+        "y": 0,
+        "w": 378,
+        "h": 360
+      }
+    }
+  },
+  "ring": {
+    "image": "assets/collectibles/ring.png",
+    "width": 1268,
+    "height": 1241,
+    "cell": 1093,
+    "frames": {
+      "ring": {
+        "x": 98,
+        "y": 74,
+        "w": 1071,
+        "h": 1093
+      }
+    }
+  },
+  "thamires": {
+    "image": "assets/characters/senai/running-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "cell": 244,
+    "frames": [
+      {
+        "x": 111,
+        "y": 18,
+        "w": 143,
+        "h": 242,
+        "anchorX": 185
+      },
+      {
+        "x": 392,
+        "y": 18,
+        "w": 96,
+        "h": 242,
+        "anchorX": 441
+      },
+      {
+        "x": 621,
+        "y": 18,
+        "w": 96,
+        "h": 242,
+        "anchorX": 667
+      },
+      {
+        "x": 823,
+        "y": 18,
+        "w": 143,
+        "h": 241,
+        "anchorX": 899
+      },
+      {
+        "x": 1072,
+        "y": 17,
+        "w": 116,
+        "h": 244,
+        "anchorX": 1139
+      },
+      {
+        "x": 1300,
+        "y": 17,
+        "w": 140,
+        "h": 242,
+        "anchorX": 1376
+      }
+    ],
+    "runSequence": [0, 1, 2, 3, 4, 5],
+    "frameMs": 90
+  },
+  "pedro": {
+    "image": "assets/characters/senai/running-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "cell": 218,
+    "frames": [
+      {
+        "x": 90,
+        "y": 286,
+        "w": 164,
+        "h": 217,
+        "anchorX": 177
+      },
+      {
+        "x": 367,
+        "y": 287,
+        "w": 122,
+        "h": 217,
+        "anchorX": 425
+      },
+      {
+        "x": 593,
+        "y": 286,
+        "w": 116,
+        "h": 217,
+        "anchorX": 653
+      },
+      {
+        "x": 812,
+        "y": 287,
+        "w": 149,
+        "h": 216,
+        "anchorX": 888
+      },
+      {
+        "x": 1047,
+        "y": 287,
+        "w": 233,
+        "h": 218,
+        "anchorX": 1114
+      },
+      {
+        "x": 1280,
+        "y": 286,
+        "w": 163,
+        "h": 217,
+        "anchorX": 1361
+      }
+    ],
+    "runSequence": [0, 1, 2, 3, 4, 5],
+    "frameMs": 90
+  },
+  "guedes": {
+    "image": "assets/characters/senai/running-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "cell": 228,
+    "frames": [
+      {
+        "x": 98,
+        "y": 534,
+        "w": 158,
+        "h": 221,
+        "anchorX": 178
+      },
+      {
+        "x": 372,
+        "y": 534,
+        "w": 103,
+        "h": 221,
+        "anchorX": 421
+      },
+      {
+        "x": 600,
+        "y": 533,
+        "w": 94,
+        "h": 222,
+        "anchorX": 644
+      },
+      {
+        "x": 814,
+        "y": 534,
+        "w": 143,
+        "h": 219,
+        "anchorX": 885
+      },
+      {
+        "x": 1052,
+        "y": 532,
+        "w": 127,
+        "h": 228,
+        "anchorX": 1132
+      },
+      {
+        "x": 1282,
+        "y": 534,
+        "w": 159,
+        "h": 221,
+        "anchorX": 1366
+      }
+    ],
+    "runSequence": [0, 1, 2, 3, 4, 5],
+    "frameMs": 90
+  },
+  "amanda": {
+    "image": "assets/characters/senai/running-atlas.png",
+    "width": 1536,
+    "height": 1024,
+    "cell": 232,
+    "frames": [
+      {
+        "x": 110,
+        "y": 782,
+        "w": 146,
+        "h": 230,
+        "anchorX": 187
+      },
+      {
+        "x": 256,
+        "y": 781,
+        "w": 227,
+        "h": 230,
+        "anchorX": 434
+      },
+      {
+        "x": 594,
+        "y": 781,
+        "w": 113,
+        "h": 230,
+        "anchorX": 660
+      },
+      {
+        "x": 812,
+        "y": 783,
+        "w": 152,
+        "h": 228,
+        "anchorX": 891
+      },
+      {
+        "x": 1060,
+        "y": 783,
+        "w": 119,
+        "h": 232,
+        "anchorX": 1132
+      },
+      {
+        "x": 1297,
+        "y": 782,
+        "w": 147,
+        "h": 229,
+        "anchorX": 1376
+      }
+    ],
+    "runSequence": [0, 1, 2, 3, 4, 5],
+    "frameMs": 90
+  }
+}

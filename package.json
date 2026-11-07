@@ -1,0 +1,10 @@
+{
+  "name": "beyond-jump",
+  "private": true,
+  "scripts": {
+    "test": "node tests/gameplay.cjs && node tests/combat.cjs && node tests/animation.cjs && node tests/evolution.cjs && node tests/characters.cjs && node tests/secrets.cjs && node tests/interface.cjs && node tests/lobby.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
