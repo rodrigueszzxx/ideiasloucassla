@@ -101,6 +101,7 @@ const hook = `window.__interface={get state(){return state},endGame};`;
       await fit();
       await page.locator("#btn-home").click();
       await page.locator("#btn-splash-play").click();
+      await page.locator("#howto-modal").waitFor();
       assert.equal(await page.locator(".howto-list li").count(), 6);
       assert(await page.locator(".control-strip kbd").first().isVisible());
       await fit();

@@ -4,13 +4,13 @@ Nova versão do jogo acadêmico, com Mago, Pikachu, Sonic e Shadow selecionávei
 
 ## Nova abertura interativa
 
-A entrada foi redesenhada com inspiração no fliperama da referência enviada: gabinete em CSS, tela com efeito CRT, fontes locais, verde-lima e lilás sobre fundo escuro. Os botões 01–03 alternam a prévia dos cenários sem mudar o personagem da partida. Iniciar jogo (ou Enter fora de um controle) abre as instruções originais. A abertura inclui acesso ao ranking e ao Sobre nós, navegação por teclado e adaptação ao movimento reduzido. Nenhum serviço externo é necessário para o visual.
+A abertura reproduz o fliperama de `siteJogoFinal-main.zip`, com sua imagem original salva localmente em `assets/scenes/arcade-entrance.jpg`. O botão **APERTE START** (ou Enter/Espaço fora de um controle) inicia o zoom na tela, revela a marca Beyond the Limits sobre o fundo ciano e abre as instruções. A sequência dura cerca de 3,3 segundos; com movimento reduzido, abre as instruções diretamente. Voltar à tela inicial restaura a abertura para jogar novamente. Ranking e Sobre nós continuam acessíveis antes de iniciar. Fontes e imagens são locais.
 
 O jogo exige hospedagem com PHP; GitHub Pages não executa seus endpoints. O ranking persistente exige MySQL/MariaDB configurado pelas variáveis abaixo.
 
 ## Jogar
 
-1. Na abertura, clique em Iniciar jogo, leia as instruções e informe seu nome. Escolha Mago, Pikachu, Sonic ou Shadow para iniciar.
+1. Na abertura, clique em APERTE START, leia as instruções e informe seu nome. Escolha Mago, Pikachu, Sonic ou Shadow para iniciar.
 2. Na travessia, pule pedras com o Mago, Pokébolas com Pikachu e esferas de espinhos com Sonic e Shadow. Colete gemas, doces ou argolas conforme o personagem. Cada item vale 30 pontos.
 3. Após 24 segundos ativos, o jogo muda para o confronto. Há um aviso três segundos antes e uma transição sem perigos de 2,4 segundos.
 4. Contra o Rei do Lodo, pule os projéteis baixos e permaneça no chão contra os altos. O brilho do boss e a faixa na trajetória sinalizam os ataques, sem dicas escritas durante a ação.

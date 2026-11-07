@@ -29,10 +29,10 @@ $secretCharacters = ['thamires' =>
       crossorigin
     />
     <link rel="stylesheet" href="css/styles.css?v=arcade-13" />
-    <link rel="stylesheet" href="css/lobby.css?v=1" />
+    <link rel="stylesheet" href="css/lobby.css?v=2" />
     <script src="js/audio.js?v=arcade-13" defer></script>
-    <script src="js/script.js?v=arcade-14" defer></script>
-    <script src="js/lobby.js?v=1" defer></script>
+    <script src="js/script.js?v=arcade-15" defer></script>
+    <script src="js/lobby.js?v=2" defer></script>
   </head>
   <body class="game-page">
     <div class="game-tools" aria-label="Controles da partida">
@@ -142,45 +142,16 @@ $secretCharacters = ['thamires' =>
       class="splash-screen"
       aria-labelledby="splash-title"
     >
-      <div class="lobby-shell">
-        <header class="lobby-header">
-          <a class="lobby-brand" href="./" aria-label="Beyond the Limits — início"><span class="brand-symbol" aria-hidden="true">B<svg class="lobby-arrow" aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16 16 4M4 4h12v12"/></svg></span><span>BEYOND<span class="brand-sub">THE LIMITS®</span></span></a>
-          <nav aria-label="Menu principal"><span class="nav-active">O jogo</span><a class="about-link" href="pages/sobre-nos.php">Sobre nós <svg class="lobby-arrow" aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16 16 4M4 4h12v12"/></svg></a></nav>
-          <span class="lobby-edition"><i></i> ESCOLHA JOGAR ALÉM</span>
-        </header>
-        <div class="lobby-main">
-          <div class="lobby-copy">
-            <p class="lobby-eyebrow"><span></span> O PRÓXIMO NÍVEL COMEÇA AQUI</p>
-            <h1 id="splash-title">Pequenos saltos.<br>Grandes <em>aventuras.</em></h1>
-            <p class="lobby-description">Um universo em pixels. Quatro heróis. Nenhum limite.<br class="desktop-break"> Entre no fliperama e descubra até onde você consegue ir.</p>
-            <div class="lobby-actions"><button id="btn-splash-play" class="lobby-play" type="button"><svg class="lobby-play-icon" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><path d="m5 3 8 5-8 5z"/></svg> INICIAR JOGO <svg class="lobby-arrow" aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16 16 4M4 4h12v12"/></svg></button><span class="lobby-key">ou aperte <kbd>ENTER</kbd></span></div>
-            <div class="lobby-facts"><span><b>04</b> personagens</span><span><b>03</b> universos</span><span><b>∞</b> possibilidades</span></div>
-          </div>
-          <div class="arcade-stage">
-            <span class="stage-coordinate">BTL—001 / ARCADE SYSTEM</span>
-            <div class="arcade-cabinet" id="arcade-cabinet">
-              <div class="arcade-marquee"><span class="marquee-star">✦</span> BEYOND JUMP <span class="marquee-star">✦</span></div>
-              <div class="arcade-bezel">
-                <div class="arcade-display" id="arcade-display" data-world="dungeon">
-                  <div class="arcade-screen-top"><span>1UP <b>000000</b></span><span class="screen-live">DEMO MODE</span></div>
-                  <div class="arcade-screen-title" aria-hidden="true">BEYOND<br><strong>JUMP</strong></div>
-                  <div class="arcade-sprites" aria-hidden="true"><img src="assets/characters/sonic.gif" alt=""><img class="floating-ring" src="assets/collectibles/ring.png" alt=""><img src="assets/characters/pikachu.gif" alt=""></div>
-                  <span class="screen-insert" aria-hidden="true">YOUR NEXT ADVENTURE AWAITS</span>
-                </div>
-                <span class="bezel-label">BEYOND THE LIMITS · EST. SENAI</span>
-              </div>
-              <div class="arcade-controls" aria-hidden="true"><div class="arcade-stick"><i></i></div><span class="control-label">PLAYER ONE</span><div class="arcade-buttons"><i></i><i></i><i></i></div></div>
-              <div class="cabinet-base"><div class="speaker-grille"></div><span>INSERT CURIOSITY<br><b>FREE TO PLAY</b></span><div class="speaker-grille"></div></div>
-            </div>
-            <div class="world-switch" role="group" aria-label="Prévia dos cenários"><span>EXPLORE</span><button type="button" data-scene="dungeon" aria-pressed="true" aria-label="Ver masmorra">01</button><button type="button" data-scene="pokemon" aria-pressed="false" aria-label="Ver universo Pokémon">02</button><button type="button" data-scene="forest" aria-pressed="false" aria-label="Ver floresta">03</button><span id="world-name" aria-live="polite">Masmorra</span></div>
-          </div>
-        </div>
-        <div class="lobby-bottom">
-          <button id="btn-splash-ranking" class="lobby-record" type="button" aria-label="Ver recorde e ranking"><span class="record-icon" aria-hidden="true">♛</span><span><small>O TOPO É SÓ O COMEÇO</small><strong id="splash-record-text">Consultando ranking…</strong></span><span class="record-link">Ver ranking <svg class="lobby-arrow" aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16 16 4M4 4h12v12"/></svg></span></button>
-          <div class="lobby-tip"><span aria-hidden="true">✧</span><p>Fácil de começar. Difícil de parar.<br><span>Pule, colete e supere o seu recorde.</span></p></div>
-        </div>
-        <footer class="lobby-footer"><span>FEITO COM PIXELS E VONTADE DE IR ALÉM.</span><span>PROJETO ACADÊMICO · SENAI <span class="footer-plus">+</span></span></footer>
+      <h1 id="splash-title" class="entrance-sr-only">Beyond Jump</h1>
+      <div id="entrance-cover" aria-hidden="true"></div>
+      <div id="entrance-glow" aria-hidden="true"></div>
+      <img id="entrance-logo" src="assets/brand/beyond-the-limits.png" alt="Beyond the Limits" />
+      <button id="btn-splash-play" type="button">▶ APERTE START</button>
+      <div class="entrance-links">
+        <button id="btn-splash-ranking" type="button" aria-label="Ver recorde e ranking">RANKING <span id="splash-record-text">Consultando…</span></button>
+        <a class="about-link" href="pages/sobre-nos.php">Sobre nós →</a>
       </div>
+      <p id="entrance-status" class="entrance-sr-only" role="status"></p>
     </section>
     <section
       id="howto-modal"

@@ -956,6 +956,7 @@
   function setScreen(id) {
     screens.forEach((name) => ($(name).hidden = name !== id));
     document.body.dataset.screen = id || "game";
+    if (id === "splash-screen") window.arcadeEntrance?.reset();
     if (id === "start-modal") syncSecretCharacters();
     board.tabIndex = id ? -1 : 0;
     if (id === "gameover-modal") {
@@ -1000,9 +1001,17 @@
     loadRanking();
     $("btn-splash-play").focus();
   }
-  $("btn-splash-play").addEventListener("click", () => {
-    setScreen("howto-modal");
-    $("btn-howto-ok").focus();
+  let enteringArcade = false;
+  $("btn-splash-play").addEventListener("click", async () => {
+    if (enteringArcade) return;
+    enteringArcade = true;
+    try {
+      await window.arcadeEntrance?.play();
+      setScreen("howto-modal");
+      $("btn-howto-ok").focus();
+    } finally {
+      enteringArcade = false;
+    }
   });
   $("btn-howto-ok").addEventListener("click", openSelection);
   $("btn-howto-ok").addEventListener("keydown", (e) => {
